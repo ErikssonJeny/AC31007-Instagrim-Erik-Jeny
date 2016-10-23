@@ -35,7 +35,6 @@ import uk.ac.dundee.computing.ej.instagrim.stores.Pic;
     "/Image",
     "/Image/*",
     "/Image/*/Delete",
-    "/Image/*/Comments",
     "/Thumb/*",
     "/Images",
     "/Images/*"
@@ -115,8 +114,9 @@ public class Image extends HttpServlet {
                         DeleteImage(args[2], username, response);
                     }
                     else
-                    {                        
+                    {        
                         response.sendRedirect("/Instagrim/Image/" + args[2]);
+                        //response.sendRedirect("/Instagrim/Image/" + args[2] +"/Comments");
                     }     
                 }
                 else

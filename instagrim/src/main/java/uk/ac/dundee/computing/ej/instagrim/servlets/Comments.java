@@ -33,7 +33,7 @@ import uk.ac.dundee.computing.ej.instagrim.stores.Pic;
  *
  * @author Development
  */
-@WebServlet(name = "Comments", urlPatterns = { "Comment/*", "Comment/*/Delete" })
+@WebServlet(name = "Comments", urlPatterns = {"/Image/*/Comments", "/Comment/*", "/Comment/*/Delete" })
 public class Comments extends HttpServlet {
     
     Cluster cluster=null;
@@ -44,23 +44,9 @@ public class Comments extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         String args[] = Convertors.SplitRequestPath(request);
         String username = "majed";
-        Image image = new Image(cluster);
+        Image image = new Image();
 
         HttpSession session=request.getSession();
         LoggedIn lg = (LoggedIn)session.getAttribute("LoggedIn");
@@ -87,12 +73,26 @@ public class Comments extends HttpServlet {
                 request.setAttribute("UUID", args[2]);
                 System.out.println("Attribute UUID: " + args[2]);
                 image.DisplayImage(Convertors.DISPLAY_PROCESSED, args[2], response);
-                displayCommentList(args[1], request, response);
+                displayCommentList(args[2], request, response);
             }
             else
             {
             }
         }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       
     }
     
     private void displayCommentList(String UUID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

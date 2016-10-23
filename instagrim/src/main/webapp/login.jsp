@@ -34,7 +34,7 @@
                 </ul>
                 <br/>
                 <input type="submit" value="Login"> 
-                <p><a href="/Instagrim/Recovery">Forgot your password?</a></p>
+                <!--<p><a href="/Instagrim/Recovery">Forgot your password?</a></p>-->
             </form>
 
         </article>
